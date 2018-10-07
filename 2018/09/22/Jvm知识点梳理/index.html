@@ -110,7 +110,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2018-09-22</span>
-            <span class="time">00:47:23</span>
+            <span class="time">20:36:10</span>
           </span>
           
         </div>
@@ -142,6 +142,7 @@
 <li><a href="#9类加载机制">9.类加载机制</a><pre><code>- [类加载器分类](#类加载器分类)
 - [双亲委派模型](#双亲委派模型)
 </code></pre></li>
+<li><a href="#10-内存泄漏和内存溢出">10. 内存泄漏和内存溢出</a></li>
 </ul>
 <!-- /TOC -->
 <h4 id="1-介绍下Java内存区域（运行时数据区）。"><a href="#1-介绍下Java内存区域（运行时数据区）。" class="headerlink" title="1.介绍下Java内存区域（运行时数据区）。"></a>1.介绍下Java内存区域（运行时数据区）。</h4><ul>
@@ -271,6 +272,9 @@
 <li><p>好处<br>使得 Java 类随着它的类加载器一起具有一种带有优先级的层次关系，从而使得基础类得到统一。</p>
 </li>
 </ol>
+<h4 id="10-内存泄漏和内存溢出"><a href="#10-内存泄漏和内存溢出" class="headerlink" title="10. 内存泄漏和内存溢出"></a>10. 内存泄漏和内存溢出</h4><blockquote>
+<p>内存泄漏：可以被回收的对象仍在在内存中占用空间。<br>内存溢出：程序在运行中无法申请到足够的空间。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+</blockquote>
 
         </div>
       </div>
