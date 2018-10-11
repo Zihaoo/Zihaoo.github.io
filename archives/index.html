@@ -366,13 +366,7 @@
 1. Set
 TreeSet：基于红黑树实现，支持有序性操作，例如根据一个范围查找元素的操作。但是查找效率不如 HashSet，HashSet 查找的时间复杂度为 O(1)，TreeSet 则为 O(logN)。
 
-HashSet：基于哈希表实现，支持快速查找，但不支持有序性操作。并且失去了元素的插入顺序信息，也就是说使用 Iterator 遍历 HashSet 得到的结果是不确定的。
-
-LinkedHashSet：具有 HashSet 的查找效率，且内部使用双向链表维护元素的插入顺序。
-
-
-2. List
-ArrayList：基于动态数组实现，get,se...
+HashSet：基于哈希表实现，支持快速查找，但不支持有序性操作。并且失去了元素的插入顺序信息，也就是说使用 Iterator 遍历 HashSet...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -404,11 +398,7 @@ ArrayList：基于动态数组实现，get,se...
             1.介绍下Java内存区域（运行时数据区）。
 程序计数器可以看作当前线程所执行的字节码的行号指示器。（如果正在执行的是Native方法，这个计数器值则为空。）
 JAVA虚拟机栈是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧用于存储局部变量表、操作数栈、动态链接、方法出口等信息。
-123该区域可能抛出以下异常：1. 当线程请求的栈深度超过最大值，会抛出 StackOverflowError 异常；2. 栈进行动态扩展时如果无法申请到足够内存，会抛出 OutOfMemoryError 异常。
-
-本地方法栈为本地方法提供服务
-
-堆所有对象都在这里分配内存，是垃圾收集的主要区...
+123该区域可能抛出以下异常：1. 当线程请求的栈深度超过最大值，会抛出 StackOverf...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -438,10 +428,7 @@ JAVA虚拟机栈是Java方法执行的内存模型：每个方法在执行的同
         </a>
         <div class="abstract-content">
             Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-More info: Writing
-Run server1$ hexo server
-More...
+Qu...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
