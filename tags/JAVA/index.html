@@ -22,7 +22,7 @@
     <meta name="description" content="个人博客">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>fi3ework&#39;s Studio</title>
+    <title>Zihaoo&#39;s Space</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -210,7 +210,7 @@
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
     
-    <a class="home-link" href=/>fi3ework's Studio.</a>
+    <a class="home-link" href=/>Zihaoo's Space.</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -351,49 +351,17 @@
                 <span>JAVA集合知识点梳理</span>
         </a>
         <div class="abstract-content">
-            
-
-1.概况
-Collection
+            1.概况Collection
 1. Set
+TreeSet：基于红黑树实现，支持有序性操作，例如根据一个范围查找元素的操作。但是查找效率不如 HashSet，HashSet 查找的时间复杂度为 O(1)，TreeSet 则为 O(logN)。
+
+HashSet：基于哈希表实现，支持快速查找，但不支持有序性操作。并且失去了元素的插入顺序信息，也就是说使用 Iterator 遍历 HashSet 得到的结果是不确定的。
+
+LinkedHashSet：具有 HashSet 的查找效率，且内部使用双向链表维护元素的插入顺序。
+
+
 2. List
-3. Queue
-
-
-Map
-2.源码分析
-ArrayList
-1. 概览
-2. 扩容
-3. 删除元素
-4. Fail-Fast
-5. 序列化
-
-
-Vector
-1. 同步
-2. 与 ArrayList 的比较
-3. 替代方案
-
-
-CopyOnWriteArrayList
-读写分离
-适用场景
-
-
-LinkedList
-1. 概览
-2. 与 ArrayList 的比较
-
-
-HashMap
-1. 存储结构
-2. put 操作
-3. 确定桶下标
-4. 扩容-基本原理
-5. 扩容-重新计算桶下标
-6. 扩容-计算数组容量
-8. 链...
+ArrayList：基于动态数组实现，get,se...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -422,27 +390,14 @@ HashMap
                 <span>JVM问题总结</span>
         </a>
         <div class="abstract-content">
-            
+            1.介绍下Java内存区域（运行时数据区）。
+程序计数器可以看作当前线程所执行的字节码的行号指示器。（如果正在执行的是Native方法，这个计数器值则为空。）
+JAVA虚拟机栈是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧用于存储局部变量表、操作数栈、动态链接、方法出口等信息。
+123该区域可能抛出以下异常：1. 当线程请求的栈深度超过最大值，会抛出 StackOverflowError 异常；2. 栈进行动态扩展时如果无法申请到足够内存，会抛出 OutOfMemoryError 异常。
 
-1.介绍下Java内存区域（运行时数据区）。
-2.判断对象是否可被回收
-3. 方法区的回收
-4. finalize()
-5. 引用类型
-6. 垃圾收集算法
-7. 垃圾收集器
-8. 内存分配与回收策略- [Minor GC 和 Full GC](#minor-gc-和-full-gc)
-- [内存分配策略](#内存分配策略)
-- [Full GC 的触发条件](#full-gc-的触发条件)
+本地方法栈为本地方法提供服务
 
-9.类加载机制- [类加载器分类](#类加载器分类)
-- [双亲委派模型](#双亲委派模型)
-
-10. 内存泄漏和内存溢出
-
-
-1.介绍下Java内存区域（运行时数据区）。
-程序计数器可以看作当...
+堆所有对象都在这里分配内存，是垃圾收集的主要区...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -474,13 +429,13 @@ HashMap
     
         
             
-                <a href="mailto:12345@qq.com" class="iconfont-archer email" title=email ></a>
+                <a href="mailto:hwyoung.96@gmail.com" class="iconfont-archer email" title=email ></a>
             
         
     
         
             
-                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="//github.com/zihaoo" class="iconfont-archer github" target="_blank" title=github></a>
             
         
     
@@ -488,7 +443,7 @@ HashMap
             
                 <span class="iconfont-archer wechat" title=wechat>
                   
-                  <img class="profile-qr" src="/assets/example_qr.png" />
+                  <img class="profile-qr" src="/assets/wechat.png" />
                 </span>
             
         
@@ -606,11 +561,6 @@ HashMap
         </li>
     
     
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2018/09/22/Jvm知识点梳理/" >JVM问题总结</a>
-        </li>
-    
-    
     
     
     
@@ -622,6 +572,20 @@ HashMap
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2018/09/22/hello-world/" >Hello World</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2018/09/22/Jvm知识点梳理/" >JVM问题总结</a>
         </li>
     
     </div>

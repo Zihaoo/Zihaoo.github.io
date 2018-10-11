@@ -22,7 +22,7 @@
     <meta name="description" content="个人博客">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>fi3ework&#39;s Studio</title>
+    <title>Zihaoo&#39;s Space</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -210,7 +210,7 @@
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
     
-    <a class="home-link" href=/>fi3ework's Studio.</a>
+    <a class="home-link" href=/>Zihaoo's Space.</a>
 </header>
     <div class="wrapper">
         <div class="site-intro" style="
@@ -351,49 +351,17 @@
                 <span>JAVA集合知识点梳理</span>
         </a>
         <div class="abstract-content">
-            
-
-1.概况
-Collection
+            1.概况Collection
 1. Set
+TreeSet：基于红黑树实现，支持有序性操作，例如根据一个范围查找元素的操作。但是查找效率不如 HashSet，HashSet 查找的时间复杂度为 O(1)，TreeSet 则为 O(logN)。
+
+HashSet：基于哈希表实现，支持快速查找，但不支持有序性操作。并且失去了元素的插入顺序信息，也就是说使用 Iterator 遍历 HashSet 得到的结果是不确定的。
+
+LinkedHashSet：具有 HashSet 的查找效率，且内部使用双向链表维护元素的插入顺序。
+
+
 2. List
-3. Queue
-
-
-Map
-2.源码分析
-ArrayList
-1. 概览
-2. 扩容
-3. 删除元素
-4. Fail-Fast
-5. 序列化
-
-
-Vector
-1. 同步
-2. 与 ArrayList 的比较
-3. 替代方案
-
-
-CopyOnWriteArrayList
-读写分离
-适用场景
-
-
-LinkedList
-1. 概览
-2. 与 ArrayList 的比较
-
-
-HashMap
-1. 存储结构
-2. put 操作
-3. 确定桶下标
-4. 扩容-基本原理
-5. 扩容-重新计算桶下标
-6. 扩容-计算数组容量
-8. 链...
+ArrayList：基于动态数组实现，get,se...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -425,13 +393,13 @@ HashMap
     
         
             
-                <a href="mailto:12345@qq.com" class="iconfont-archer email" title=email ></a>
+                <a href="mailto:hwyoung.96@gmail.com" class="iconfont-archer email" title=email ></a>
             
         
     
         
             
-                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title=github></a>
+                <a href="//github.com/zihaoo" class="iconfont-archer github" target="_blank" title=github></a>
             
         
     
@@ -439,7 +407,7 @@ HashMap
             
                 <span class="iconfont-archer wechat" title=wechat>
                   
-                  <img class="profile-qr" src="/assets/example_qr.png" />
+                  <img class="profile-qr" src="/assets/wechat.png" />
                 </span>
             
         
@@ -557,11 +525,6 @@ HashMap
         </li>
     
     
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2018/09/22/Jvm知识点梳理/" >JVM问题总结</a>
-        </li>
-    
-    
     
     
     
@@ -573,6 +536,20 @@ HashMap
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2018/09/22/hello-world/" >Hello World</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2018/09/22/Jvm知识点梳理/" >JVM问题总结</a>
         </li>
     
     </div>
