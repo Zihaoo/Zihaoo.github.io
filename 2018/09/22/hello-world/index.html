@@ -17,12 +17,12 @@
     <meta name="renderer" content="webkit">
     <meta name="copyright" content="Jeremy Yang">
     
-    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    <meta name="keywords" content="hwyoung - hexo - 'hexo-theme' - 'hexo-blog'">
     
     <meta name="description" content="个人博客">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Hello World · fi3ework&#39;s Studio</title>
+    <title>Hello World · Zihaoo&#39;s Space</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -199,6 +199,17 @@
     <!-- 百度统计  -->
     
     <!-- 谷歌统计  -->
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', '126913208', 'auto');
+        ga('send', 'pageview');
+    </script>
     
 </head>
 
@@ -442,6 +453,22 @@ height:50vh;
 
     
     
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <div id="comment"></div>
+    <script>
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false, 
+        appId: "PH2F8omgMXSt8A0iHMfXQfl2-gzGzoHsz",
+        appKey: "xFbwa7STA2BI1Earr7ICyDi1",
+        placeholder: "cPH7J7br5TlHU2R6JB0eWslP",
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    </script>
+
 
     <!-- 评论 -->
 </main>
