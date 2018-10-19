@@ -22,7 +22,7 @@
     <meta name="description" content="个人博客">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Zihaoo&#39;s Space</title>
+    <title>postbook · Zihaoo&#39;s Space</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -214,12 +214,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Zihaoo&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">postbook</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Zihaoo's Studio.</a>
 </header>
@@ -231,24 +242,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            postbook
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">517</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2018/10/14</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -349,66 +404,81 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/09/22/Jvm知识点梳理/" >
-            
-                <span>JVM问题总结</span>
-        </a>
-        <div class="abstract-content">
-            1.介绍下Java内存区域（运行时数据区）。
-程序计数器可以看作当前线程所执行的字节码的行号指示器。（如果正在执行的是Native方法，这个计数器值则为空。）
-JAVA虚拟机栈是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧用于存储局部变量表、操作数栈、动态链接、方法出口等信息。
-123该区域可能抛出以下异常：1. 当线程请求的栈深度超过最大值，会抛出 StackOverf...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/09/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "JAVA">JAVA</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>一.计算机网络系列（4本）：<br>1.《TCP/IP卷一》 2.《计算机网络：自顶向下》<br>3.《图解HTTP和图解TCP/IP》 4.《计算机网络》 </p>
+<p>二.<strong><em>作系统系列（4本）<br>1.《深入理解计算机系统》 2. 《现代</em></strong>作系统》<br>3.《Linux内核设计与实现》 4.《Unix网络编程》 </p>
+<p>三.数据结构与算法系列（4.5本）<br>1.《算法导论》 2.《数据结构与算法（Java版）》<br>3.《算法图解，啊哈算法》 4 .《剑指offer》<br>5.LeetCode教科书式刷题网站 </p>
+<p>四.Java基础系列（2本）<br>1.《Java编程思想》 2.《Java核心技术卷一.二》 </p>
+<p>五.Java进阶系列（6本）<br>1.《深入理解JVM虚拟机》 2.《Java并发编程实战》<br>3.《Java并发编程艺术》 4.《Effective Java》<br>5.《Java性能调优指南》 6.《 Netty权威指南》 </p>
+<p>六.JavaWeb系列（7本）<br>1.《深入JavaWeb技术内幕》 2.《How Tomcat Works》<br>3.《Tomcat架构解析》 4.《Spring实战》<br>5.《Spring源码深度解析》 6.《Spring MVC学习指南》<br>7.《Maven实战》 </p>
+<p>七.数据库系列（7本）<br>1.《数据库原理》 2.《SQL必知必会》<br>3.《深入浅出MySQL》 4.《MySQL技术内幕：innodb存储引擎》<br>5.《高性能Mysql》 6.《Redis实战》<br>7.《Redis设计与实现》</p>
+<p>八.分布式系列（7本）<br>1.《分布式Java应用》 2.《大型网站技术架构》<br>3.《大型分布式网站架构设计与实践》 4 .《布式服务框架原理与实践》<br>5.《大型网站系统与Java中间件开发实践》 6.《从Paxos到Zookeeper分布式一致性原理与实践》<br>7.《大规模分布式存储系统》 </p>
+<p>九.云计算系列（3本）<br>1.《OpenStack设计与实现》 2.《docker入门与实践》<br>3《Kubenetes权威指南》 </p>
+<p>十.大数据系列（3本）<br>1《大数据技术原理与应用》 2.《Hadoop实战》<br>3 《Hadoop权威指南》 </p>
+<p>十一.其他系列（2本）<br>1 《Git权威指南》 2 《重构——改善既有代码的设计》<br>3 .其他的其他 </p>
+<p>十二.颈椎康复指南系列（不开玩笑，适当看看真心有用）（1本）<br>1.《做自己的颈椎医生》 </p>
+
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2018/09/22/hello-world/" >
-            
-                <span>Hello World</span>
-        </a>
-        <div class="abstract-content">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Jeremy Yang</a>
+            <p>原文链接：<a href="http://yoursite.com/2018/10/14/postbook/">http://yoursite.com/2018/10/14/postbook/</a>
+            <p>发表日期：<a href="http://yoursite.com/2018/10/14/postbook/">October 14th 2018, 1:07:57 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2018/10/14/postbook/">October 14th 2018, 1:21:56 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/09/22</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2018/10/15/network-note/" title= "network_note">
+                    <div class="nextTitle">network_note</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2018/10/03/hi/" title= "JAVA集合知识点梳理">
+                    <div class="prevTitle">JAVA集合知识点梳理</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <div id="comment"></div>
+    <script>
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false, 
+        appId: "PH2F8omgMXSt8A0iHMfXQfl2-gzGzoHsz",
+        appKey: "xFbwa7STA2BI1Earr7ICyDi1",
+        placeholder: "cPH7J7br5TlHU2R6JB0eWslP",
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    </script>
+
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -493,6 +563,24 @@ Qu...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -693,6 +781,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

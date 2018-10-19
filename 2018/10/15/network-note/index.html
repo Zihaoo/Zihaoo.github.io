@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="Jeremy Yang">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Jeremy Yang">
+    
+    <meta name="keywords" content="hwyoung - hexo - 'hexo-theme' - 'hexo-blog'">
+    
+    <meta name="description" content="个人博客">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>network_note · Zihaoo&#39;s Space</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-126913208-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Zihaoo&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">network_note</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Zihaoo's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            network_note
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "网络">网络</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.3k</span>阅读时长: <span class="post-count reading-time">8 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2018/10/15</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="一-计算机网络的体系结构"><a href="#一-计算机网络的体系结构" class="headerlink" title="一.计算机网络的体系结构"></a>一.计算机网络的体系结构</h2><p><img src="https://upload-images.jianshu.io/upload_images/2155796-3bb9d2df2496abb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="1-五层协议"><a href="#1-五层协议" class="headerlink" title="1. 五层协议"></a>1. 五层协议</h3><ul>
+<li><p>应用层 ：为特定应用程序提供数据传输服务(数据单位:报文)</p>
+<blockquote>
+<p>例如 HTTP、DNS 、SMTP、FTP</p>
+</blockquote>
+</li>
+<li><p>传输层 ：负责主机中两个进程之间的通信，为端到端连接提供可靠的传输服务。为端到端连接提供流量控制、差错控制、服务质量、数据传输管理等服务。</p>
+<blockquote>
+<p>协议：TCP,UDP</p>
+</blockquote>
+</li>
+<li><p>网络层 ：将数据封装成数据报，从源端传到目的端，同时进行路由选择。关键问题是对分组进行选择（传输单位：数据报）</p>
+<blockquote>
+<p>协议: IP,ICMP(因特网控制报文协议),IGMP(因特网组管理协议),ARP,RARP,OSPF(开放最短路径优先),IPX<br>设备:路由器</p>
+</blockquote>
+</li>
+<li><p>数据链路层 ：将网络层传下来的IP数据报组装成帧，并检测和矫正物理层产生的传输差错，使得链路对网络层显示一条无差错、可靠的数据传输线路。功能可以概括为成帧，差错控制、流量控制和传输管理</p>
+<blockquote>
+<p>网桥，交换机</p>
+</blockquote>
+</li>
+<li><p>物理层 ：为数据端透明的传输比特流（传输单位：比特）</p>
+<blockquote>
+<p>CLOCK协议 中继器，集线器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">补充会话层，表示层作用：</span><br><span class="line">会话层：定义如何开始，控制结束一个会话。</span><br><span class="line">表示层：定义数据格式及加密等。</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h3 id="2-网络层ARP-RARP工作原理。"><a href="#2-网络层ARP-RARP工作原理。" class="headerlink" title="2.网络层ARP,RARP工作原理。"></a>2.网络层ARP,RARP工作原理。</h3><ol>
+<li>每个主机都有自己ARP缓冲区存放本局域网上各主机和路由器的IP地址到MAC地址的映射表。</li>
+<li>源主机发送数据时，检查APR列表有无对应IP地址的目的主机的Mac地址，有直接发；没有向本网段所有主机发送ARP数据包。</li>
+<li>当本网段所有主机收到APR包，检查ip地址是否是自己的，不是忽略，是则将源主机ip，mac写入APR列表中。然后把自己ip，mac写入相应包。<blockquote>
+<ul>
+<li>广播发送APR请求，单播发送ARP响应。</li>
+<li>APR解决的是同一个局域网上ip与mac的映射问题</li>
+<li>如果源主机和目的主机不在一个局域网，则需要发给路由器，进行分组转发。</li>
+<li>RARP主要运用与无盘工作站</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h3 id="3-网络层ICMP作用，及IP地址分类"><a href="#3-网络层ICMP作用，及IP地址分类" class="headerlink" title="3.网络层ICMP作用，及IP地址分类"></a>3.网络层ICMP作用，及IP地址分类</h3><ol>
+<li>ICMP 网络控制报文协议，用于在IP主机，路由器之间传递控制消息。 控制消息是指网络通不通，路由器是否可以用等网络消息。<blockquote>
+<p>ICMP两种报文： 差错报文和询问报文。</p>
+</blockquote>
+</li>
+</ol>
+<ol start="2">
+<li><p><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#ip-%E6%95%B0%E6%8D%AE%E6%8A%A5%E6%A0%BC%E5%BC%8F" target="_blank" rel="noopener">IP数据报格式（版本4首部4服务类型4数据总长16）</a></p>
+</li>
+<li><p>IP地址分类<br><img src="https://upload-images.jianshu.io/upload_images/2155796-c03bbcc9ddb9285f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ol>
+<p>4.特殊的ip地址<br><img src="https://upload-images.jianshu.io/upload_images/2155796-31a93dbf7e4c824c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Q7E}`AOBWU9O@XN1ZF4KZDC.png"></p>
+<p>5.私有地址<br><img src="https://upload-images.jianshu.io/upload_images/2155796-57c1c5d430dbd1a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="4-路由选择协议RIP，OSPF"><a href="#4-路由选择协议RIP，OSPF" class="headerlink" title="4.路由选择协议RIP，OSPF"></a>4.路由选择协议RIP，OSPF</h3><p> <a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.md#%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">link</a></p>
+<h3 id="5-交换机，路由器，网桥的区别"><a href="#5-交换机，路由器，网桥的区别" class="headerlink" title="5.交换机，路由器，网桥的区别"></a>5.交换机，路由器，网桥的区别</h3><ul>
+<li>路由器： 连接不同的网络并完成路由转发（网络层）</li>
+<li>交换机： 将以太网连接形成更大的以太网（数据链路层）</li>
+<li><p>网关： 协议转换器仅用于两个高层协议不同的网络互连。</p>
+<h3 id="6-TCP-UDP区别"><a href="#6-TCP-UDP区别" class="headerlink" title="6.TCP,UDP区别"></a>6.TCP,UDP区别</h3><ul>
+<li>UDP 是无连接的，尽最大可能交付，没有拥塞控制，面向报文（对于应用程序传下来的报文不合并也不拆分，只是添加 UDP 首部），支持一对一、一对多、多对一和多对多的交互通信。</li>
+<li>TCP 是面向连接的，提供可靠交付，有流量控制，拥塞控制，提供全双工通信，面向字节流</li>
+</ul>
+</li>
+</ul>
+<p>传输控制协议 TCP（Transmission Control Protocol）是面向连接的，提供可靠交付，有流量控制，拥塞控制，提供全双工通信，面向字节流（把应用层传下来的报文看成字节流，把字节流组织成大小不等的数据块），每一条 TCP 连接只能是点对点的（一对一）。<br> <img src="https://upload-images.jianshu.io/upload_images/2155796-5093bef70816987b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="UKDM~DMSHYKK015`TIQ19{1.png"></p>
+<h3 id="7-三次握手四次挥手相关问题"><a href="#7-三次握手四次挥手相关问题" class="headerlink" title="7.三次握手四次挥手相关问题"></a>7.三次握手四次挥手相关问题</h3><h5 id="1-三次握手过程"><a href="#1-三次握手过程" class="headerlink" title="1. 三次握手过程"></a>1. 三次握手过程</h5><p><img src="https://upload-images.jianshu.io/upload_images/2155796-df8ad611c1cc2436.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="TOD$@7~6$9_5AK9`(2MJPZD.png"></p>
+<h5 id="2-为什么采用三次而不是两次"><a href="#2-为什么采用三次而不是两次" class="headerlink" title="2.为什么采用三次而不是两次"></a>2.为什么采用三次而不是两次</h5><p>首先得回答三次握手的目的是同步连接双方的序列号和确认号并交换 TCP 窗口大小信息。<br>然后可以回答为什么两次握手不行，两次握手可能因为丢包而出现死锁，假设在两次握手场景中，C向S发送请求，S收到并发送确认请求给C，这时候S认为连接已经建立，并开始发送数据给C，但是那个确认请求丢包了，C不认为请求建立了，C当然会拒绝接受S发送来的数据，并且再去请求连接。这样，一个资源就死锁了。<br>最后回答握手当然可以四次五次一直握下去，但三次已经够了，就没有必要了。<br>总结下来一句话，主要目的防止在网络发生延迟或者丢包的情况下浪费资源。</p>
+<h5 id="3-四次挥手过程"><a href="#3-四次挥手过程" class="headerlink" title="3.四次挥手过程"></a>3.四次挥手过程</h5><p><img src="https://upload-images.jianshu.io/upload_images/2155796-52fdebb8e73d2871.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="![image](http://upload-images.jianshu.io/upload_images/2155796-3755c6bdf5ee9000?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+"></p>
+<h5 id="4-为什么要四次握手，为什么要设置time-wait"><a href="#4-为什么要四次握手，为什么要设置time-wait" class="headerlink" title="4.为什么要四次握手，为什么要设置time_wait"></a>4.为什么要四次握手，为什么要设置time_wait</h5><ul>
+<li>可靠的实现tcp全双工释放（tcp有个半关闭状态）</li>
+<li>允许旧的数据包在网络中消逝(让迟来的TCP有足够的时间被识别和销毁)</li>
+</ul>
+<h5 id="5-大量time-wait出现原因及解决办法"><a href="#5-大量time-wait出现原因及解决办法" class="headerlink" title="5.大量time_wait出现原因及解决办法"></a>5.大量time_wait出现原因及解决办法</h5><ul>
+<li>原因：对于基于TCP的HTTP协议，关闭TCP连接的是Server端，这样，Server端会进入TIME_WAIT状态，可想而知，对于访问量大的Web Server，会存在大量的TIME_WAIT状态。</li>
+<li>解决办法：<blockquote>
+<ol>
+<li>开启socket重用，允许将TIME_WAIT的socket重新用于TCP连接</li>
+<li>开启快速回收。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h5 id="6-大量close-wait出现原因及解决办法"><a href="#6-大量close-wait出现原因及解决办法" class="headerlink" title="6.大量close_wait出现原因及解决办法"></a>6.大量close_wait出现原因及解决办法</h5><p>原因：对方关闭连接之后服务器程序自己没有进一步发出ack信号。换句话说，就是在对方连接 关闭之后，程序里 没有检测到，或者程序压根就忘记了这个时候需要关闭连接，于是这个资源就一直被程序占着。<br>解决办法：<br>具体问题具体解决，总结一句话就是在处理资源时一定要记住自己申请的资源要记得主动释放。</p>
+<h3 id="8-HTTP"><a href="#8-HTTP" class="headerlink" title="8.HTTP"></a>8.HTTP</h3><h5 id="1-请求报文-amp-响应报文格式"><a href="#1-请求报文-amp-响应报文格式" class="headerlink" title="1. 请求报文&amp;响应报文格式"></a>1. 请求报文&amp;响应报文格式</h5><p> <img src="https://upload-images.jianshu.io/upload_images/2155796-5dd29310e2e01abf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/2155796-998e5744a5d3347b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2155796-415639754b0fb869.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/2155796-e35d33734bb3403d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="java面经.jpg"></p>
+<h5 id="2-常见状态码"><a href="#2-常见状态码" class="headerlink" title="2.常见状态码"></a>2.<a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/HTTP.md#%E4%B8%89http-%E7%8A%B6%E6%80%81%E7%A0%81" target="_blank" rel="noopener">常见状态码</a></h5><h5 id="3-http1-0，1-1区别"><a href="#3-http1-0，1-1区别" class="headerlink" title="3.http1.0，1.1区别"></a>3.http1.0，1.1区别</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. http1.1默认长连接（在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟。）</span><br><span class="line">2. http1.1只发送header信息，节约宽带（如果服务器接收请求，返回100，然后才把body发给server，返回401，不发）</span><br><span class="line">3. http1.1 增加host域，可用来创建虚拟站点。</span><br><span class="line">4. 增加断点续传，range头域。</span><br></pre></td></tr></table></figure>
+<h3 id="9-cookie与session原理和作用（会话跟踪技术）"><a href="#9-cookie与session原理和作用（会话跟踪技术）" class="headerlink" title="9.cookie与session原理和作用（会话跟踪技术）"></a>9.cookie与session原理和作用（会话跟踪技术）</h3><ul>
+<li>cookie<blockquote>
+<p>客户端请求服务器，如果服务器需要记录该用户状态，就产生一个用户身份标识，然后在响应消息中将该标识号以Cookie的形式传递给浏览器.客户端浏览器会把Cookie保存起来。浏览器在以后每次访问该web服务器时，浏览器把请求的网址连同该Cookie一同提交给服务器。服务器检查该Cookie，以此来辨认用户状态。(默认一个会话级别)</p>
+</blockquote>
+</li>
+<li><p>session</p>
+<blockquote>
+<p>Session是另一种记录客户状态的机制，不同的是session保存在服务器上。(Session保存在服务器端。为了获得更高的存取速度，服务器一般把Session放在内存里。)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">session工作原理</span><br><span class="line">1.在访问一些特殊的程序并且该程序决定与客户端开启会话时,服务器生成一个唯一值,Session ID（好像是通过取进程ID的方式取得的）。服务器开辟一块内存，对应于该Session ID</span><br><span class="line">2. 服务器再将该Session ID写入浏览器的cookie。</span><br><span class="line">3. 服务器内有一进程，监视所有Session的活动状况，如果有Session超时或是主动关闭，服务器就释放改内存块。</span><br><span class="line">4. 当浏览器连入服务器时并请求Session时，服务器就读浏览器Cookie中的Session ID。</span><br><span class="line">5. 然后检查session是否有效，有效读，无效在创建。（tomcat默认30分钟）</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>session 与 cookie选择</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.考虑数据复杂性时用session(可以存取任意类型)，cookie只能存字符串</span><br><span class="line">2.考虑安全性时用seesion,cookie存在客户端，容易被查看。</span><br><span class="line">3.数据量太大不建议放在seesion，服务端开销过大，用cookie减轻服务端负担。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="10-电脑上访问一个网页，整个过程是怎么样的"><a href="#10-电脑上访问一个网页，整个过程是怎么样的" class="headerlink" title="10. 电脑上访问一个网页，整个过程是怎么样的"></a>10. <a href="https://www.jianshu.com/p/c1dfc6caa520" target="_blank" rel="noopener">电脑上访问一个网页，整个过程是怎么样的</a></h3><p><img src="https://upload-images.jianshu.io/upload_images/2155796-15dbdf2ff2a637e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; 1.通过DNS解析该域名ip地址（应用层）</span><br><span class="line">&gt; 2.浏览器与服务器建立TCP连接(三次握手)(默认端口80)（传输层）</span><br><span class="line">&gt; 3.浏览器发送http请求获取指定页面</span><br><span class="line">&gt; 4.服务器通过http响应把文件对应页面发给浏览器。</span><br><span class="line">&gt; 5.然后浏览器将文件进行解析，将web页面呈现给用户。</span><br></pre></td></tr></table></figure></p>
+<h3 id="11-Https是什么"><a href="#11-Https是什么" class="headerlink" title="11.Https是什么"></a>11.Https是什么</h3><blockquote>
+<p>http缺点<br>1.通信用明文 —– 内容窃听 —- 加密<br>2.不验证身份 —– 伪装   —— 认证<br>3.不验证数据完整性   —- 篡改 —– 完整性保护</p>
+</blockquote>
+<p>HTTPS = HTTP + SSL</p>
+<h3 id="12-常见网络攻击"><a href="#12-常见网络攻击" class="headerlink" title="12.常见网络攻击"></a>12.常见网络攻击</h3><ol>
+<li>SYN Flood攻击<blockquote>
+<p>给服务发送syn后下线，于是服务器要等63s才断开。<br>linux下tcp_syncookies的参数解决</p>
+</blockquote>
+</li>
+<li>DDOS攻击<br>3.DNS欺骗<br>4.SQL注入</li>
+</ol>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://yoursite.com">Jeremy Yang</a>
+            <p>原文链接：<a href="http://yoursite.com/2018/10/15/network-note/">http://yoursite.com/2018/10/15/network-note/</a>
+            <p>发表日期：<a href="http://yoursite.com/2018/10/15/network-note/">October 15th 2018, 11:17:53 am</a>
+            <p>更新日期：<a href="http://yoursite.com/2018/10/15/network-note/">October 19th 2018, 4:35:21 pm</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2018/10/15/jianzhi-offer/" title= "jianzhi_offer">
+                    <div class="nextTitle">jianzhi_offer</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2018/10/14/postbook/" title= "postbook">
+                    <div class="prevTitle">postbook</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <div id="comment"></div>
+    <script>
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false, 
+        appId: "PH2F8omgMXSt8A0iHMfXQfl2-gzGzoHsz",
+        appKey: "xFbwa7STA2BI1Earr7ICyDi1",
+        placeholder: "cPH7J7br5TlHU2R6JB0eWslP",
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    </script>
+
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:hwyoung.96@gmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/zihaoo" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/wechat.png" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-计算机网络的体系结构"><span class="toc-number">1.</span> <span class="toc-text">一.计算机网络的体系结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-五层协议"><span class="toc-number">1.1.</span> <span class="toc-text">1. 五层协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-网络层ARP-RARP工作原理。"><span class="toc-number">1.2.</span> <span class="toc-text">2.网络层ARP,RARP工作原理。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-网络层ICMP作用，及IP地址分类"><span class="toc-number">1.3.</span> <span class="toc-text">3.网络层ICMP作用，及IP地址分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-路由选择协议RIP，OSPF"><span class="toc-number">1.4.</span> <span class="toc-text">4.路由选择协议RIP，OSPF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-交换机，路由器，网桥的区别"><span class="toc-number">1.5.</span> <span class="toc-text">5.交换机，路由器，网桥的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-TCP-UDP区别"><span class="toc-number">1.6.</span> <span class="toc-text">6.TCP,UDP区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-三次握手四次挥手相关问题"><span class="toc-number">1.7.</span> <span class="toc-text">7.三次握手四次挥手相关问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-三次握手过程"><span class="toc-number">1.7.0.1.</span> <span class="toc-text">1. 三次握手过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-为什么采用三次而不是两次"><span class="toc-number">1.7.0.2.</span> <span class="toc-text">2.为什么采用三次而不是两次</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-四次挥手过程"><span class="toc-number">1.7.0.3.</span> <span class="toc-text">3.四次挥手过程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-为什么要四次握手，为什么要设置time-wait"><span class="toc-number">1.7.0.4.</span> <span class="toc-text">4.为什么要四次握手，为什么要设置time_wait</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-大量time-wait出现原因及解决办法"><span class="toc-number">1.7.0.5.</span> <span class="toc-text">5.大量time_wait出现原因及解决办法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-大量close-wait出现原因及解决办法"><span class="toc-number">1.7.0.6.</span> <span class="toc-text">6.大量close_wait出现原因及解决办法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-HTTP"><span class="toc-number">1.8.</span> <span class="toc-text">8.HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-请求报文-amp-响应报文格式"><span class="toc-number">1.8.0.1.</span> <span class="toc-text">1. 请求报文&amp;响应报文格式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-常见状态码"><span class="toc-number">1.8.0.2.</span> <span class="toc-text">2.常见状态码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-http1-0，1-1区别"><span class="toc-number">1.8.0.3.</span> <span class="toc-text">3.http1.0，1.1区别</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-cookie与session原理和作用（会话跟踪技术）"><span class="toc-number">1.9.</span> <span class="toc-text">9.cookie与session原理和作用（会话跟踪技术）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-电脑上访问一个网页，整个过程是怎么样的"><span class="toc-number">1.10.</span> <span class="toc-text">10. 电脑上访问一个网页，整个过程是怎么样的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-Https是什么"><span class="toc-number">1.11.</span> <span class="toc-text">11.Https是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-常见网络攻击"><span class="toc-number">1.12.</span> <span class="toc-text">12.常见网络攻击</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 6
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href= "/2018/10/15/jianzhi-offer/" >jianzhi_offer</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/15</span><a class="archive-post-title" href= "/2018/10/15/network-note/" >network_note</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/14</span><a class="archive-post-title" href= "/2018/10/14/postbook/" >postbook</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href= "/2018/10/03/hi/" >JAVA集合知识点梳理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2018/09/22/Jvm知识点梳理/" >JVM问题总结</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2018/09/22/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="JAVA"><span class="iconfont-archer">&#xe606;</span>JAVA</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Jeremy Yang"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
