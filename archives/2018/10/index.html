@@ -357,12 +357,46 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2018/10/20/mysql-note/" >
+            
+                <span>数据库知识点终结</span>
+        </a>
+        <div class="abstract-content">
+            索引
+1. 索引优缺，失效场景，应用规则
+
+数据库索引本质上是一种数据结构(存储结构+算法)，目的是为了加快目标数据检索的速度。
+索引的存储类型有两种：btree和hash,具体和表的存储引擎有关．MyISAM和InnoDB存储引擎只支持BTREE;  memery/head存储索引可以支持HASH和BTREE索引．
+优点1.大大加快数据的检索速度2.创建唯一索引，可以保证数据库表中每行数据...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/10/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "数据库">数据库</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2018/10/15/jianzhi-offer/" >
             
                 <span>剑指Offer</span>
         </a>
         <div class="abstract-content">
-            02.单例模式####一.懒汉式(安全版)123456789101112131415/** * 单例模式(懒汉模式安全版):安全,加重量级锁效率低,实现懒加载 * @author hwyou *  */public class Singleton &#123;	private static Singleton singleton;	private Singleton()&#123;&#125...
+            02.单例模式一.懒汉式(安全版)123456789101112131415/** * 单例模式(懒汉模式安全版):安全,加重量级锁效率低,实现懒加载 * @author hwyou *  */public class Singleton &#123;	private static Singleton singleton;	private Singleton()&#123;&#125;	pu...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -458,7 +492,7 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2018/10/03/hi/" >
+        <a class="abstract-title" href = "/2018/10/03/collection/" >
             
                 <span>JAVA集合知识点梳理</span>
         </a>
@@ -642,6 +676,10 @@ HashSet：基于哈希表实现，支持快速查找，但不支持有序性操�
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 6
@@ -660,6 +698,11 @@ HashSet：基于哈希表实现，支持快速查找，但不支持有序性操�
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">10/20</span><a class="archive-post-title" href= "/2018/10/20/mysql-note/" >数据库知识点终结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">10/15</span><a class="archive-post-title" href= "/2018/10/15/jianzhi-offer/" >剑指Offer</a>
         </li>
     
@@ -675,26 +718,12 @@ HashSet：基于哈希表实现，支持快速查找，但不支持有序性操�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/03</span><a class="archive-post-title" href= "/2018/10/03/hi/" >JAVA集合知识点梳理</a>
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href= "/2018/10/03/collection/" >JAVA集合知识点梳理</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2018/09/22/Jvm知识点梳理/" >JVM问题总结</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2018/09/22/hello-world/" >Hello World</a>
         </li>
     
     </div>
@@ -704,9 +733,11 @@ HashSet：基于哈希表实现，支持快速查找，但不支持有序性操�
     
         <span class="sidebar-tag-name" data-tags="JAVA"><span class="iconfont-archer">&#xe606;</span>JAVA</span>
     
+        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
+    
         <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
     
-        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
+        <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
