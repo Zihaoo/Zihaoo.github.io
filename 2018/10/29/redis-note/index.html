@@ -22,7 +22,7 @@
     <meta name="description" content="个人博客">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>操作系统知识点总结 · Zihaoo&#39;s Space</title>
+    <title>redis_note · Zihaoo&#39;s Space</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -228,7 +228,7 @@
                 <a href="/" >Zihaoo&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">操作系统知识点总结</a>
+                <a href="#" class="post-name">redis_note</a>
             </div>
     </div>
     
@@ -258,7 +258,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            操作系统知识点总结
+            redis_note
             <!-- 404 -->
             
         </h1>
@@ -277,18 +277,18 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "操作系统">操作系统</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "数据库">数据库</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2.1k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2018/10/23</span>
+                    <span class="post-intro-time">2018/10/29</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -412,55 +412,103 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h2 id="进程线程"><a href="#进程线程" class="headerlink" title="进程线程"></a>进程线程</h2><h4 id="1-进程线程及区别"><a href="#1-进程线程及区别" class="headerlink" title="1.进程线程及区别"></a>1.进程线程及区别</h4><ul>
-<li><strong>进程</strong>：进程是系统进行资源分配和调度的一个独立单位，最小的资源管理单位。</li>
-<li><p><strong>线程</strong>：线程是进程的一个微量实体，是CPU 调度和分派的基本单位，它是比进程更小的能独立运行的基本单位，最小的CPU 执行单元。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">线程拥有的资源：</span><br><span class="line">程序计数器，寄存器，栈，状态字</span><br></pre></td></tr></table></figure>
+        <h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>Redis本质上是一个Key-Value类型的内存数据库，很像memcached，整个数据库统统加载在内存当中进行操作，定期通过异步操作把数据库数据flush到硬盘上进行保存。</p>
+<h2 id="为什么使用redis"><a href="#为什么使用redis" class="headerlink" title="为什么使用redis"></a>为什么使用redis</h2><ul>
+<li>性能<blockquote>
+<p>我们在碰到需要执行耗时特别久，且结果不频繁变动的SQL，就特别适合将运行结果放入缓存。这样，后面的请求就去缓存中读取，使得请求能够迅速响应。</p>
+</blockquote>
 </li>
-<li><p><strong>区别</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.拥有资源:进程拥有资源</span><br><span class="line">2.调度：线程是独立调度的基本单位，在同一进程中，线程的切换不会引起进程切换，从一个进程中的线程切换到另一个进程中的线程时，会引起进程切换。</span><br><span class="line">3.系统开销：进程创建都要分配回收资源，开销大</span><br><span class="line">4.通信方面：线程间可以通过直接读写同一进程中的数据进行通信，但是进程通信需要借助 IPC。</span><br></pre></td></tr></table></figure>
+<li>并发<blockquote>
+<p>在大并发的情况下，所有的请求直接访问数据库，数据库会出现连接异常。这个时候，就需要使用redis做一个缓冲操作，让请求先访问到redis，而不是直接访问数据库。</p>
+</blockquote>
 </li>
 </ul>
-<h4 id="2-进程通信方式"><a href="#2-进程通信方式" class="headerlink" title="2.进程通信方式"></a>2.进程通信方式</h4><ul>
-<li><strong>管道</strong>：管道是一种<strong>半双工</strong>通信方式，数据单向流动，且只能在父子进程间使用。（命名管道可用于非父子进程）</li>
-<li><strong>信号量</strong>：信号量就是一个计数器，来控制多个进程对共享资源的访问。（主要作为同一进程内不同线程之间的同步手段）</li>
-<li><strong>消息队列</strong>：是用于两个进程之间的通讯，首先在一个进程中创建一个消息队列，然后再往消息队列中写数据，而另一个进程则从那个消息队列中取数据。</li>
-<li><strong>共享内存</strong>：就是映射一段能被其他进程所访问的内存，其它进程按照一定的步骤就能访问到这个共享内存区中的数据，当然可读可写（最快的ipc方式）</li>
-</ul>
-<h4 id="3-僵尸进程"><a href="#3-僵尸进程" class="headerlink" title="3.僵尸进程"></a>3.僵尸进程</h4><ul>
-<li><p>是什么：<br>当子进程比父进程先结束，而父进程又没有回收子进程，释放子进程占用的资源，此时子进程将成为一个僵尸进程。</p>
+<h2 id="使用redis有什么缺点"><a href="#使用redis有什么缺点" class="headerlink" title="使用redis有什么缺点"></a>使用redis有什么缺点</h2><ul>
+<li><p><strong>(一)缓存和数据库双写一致性问题</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">数据库和缓存双写，就必然会存在不一致的问题。答这个问题，先明白一个前提。就是如果对数据有强一致性要求，不能放缓存。</span><br><span class="line">我们所做的一切，只能保证最终一致性。另外，我们所做的方案其实从根本上来说，只能说降低不一致发生的概率，无法完全避免。</span><br><span class="line">因此，有强一致性要求的数据，不能放缓存。</span><br><span class="line"></span><br><span class="line">首先，采取正确更新策略，先更新数据库，再删缓存。</span><br><span class="line">其次，因为可能存在删除缓存失败的问题，提供一个补偿措施即可，例如利用消息队列。</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>怎么清楚僵尸进程</strong></p>
+<li><p><strong>(二)缓存雪崩问题</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 采用互斥锁，得到锁访问数据库，没得到休眠一会在请求</span><br><span class="line">2. 给缓存的失效时间，加上一个随机值，避免集体失效。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>(三)缓存击穿问题</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">缓存穿透，即黑客故意去请求缓存中不存在的数据，导致所有的请求都怼到数据库上，从而数据库连接异常。</span><br><span class="line">解决：</span><br><span class="line">1. 利用互斥锁，缓存失效的时候，先去获得锁，得到锁了，再去请求数据库。没得到锁，则休眠一段时间重试</span><br><span class="line">2. 提供一个能迅速判断请求是否有效的拦截机制，比如，利用布隆过滤器，内部维护一系列合法有效的key。迅速判断出，请求所携带的Key是否合法有效。如果不合法，则直接返回。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>(四)缓存的并发竞争问题</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="单线程的redis为什么这么快"><a href="#单线程的redis为什么这么快" class="headerlink" title="单线程的redis为什么这么快"></a>单线程的redis为什么这么快</h2><p>(一)纯内存操作<br>(二)单线程操作，避免了频繁的上下文切换<br>(三)采用了非阻塞I/O多路复用机制</p>
+<h2 id="redis的数据类型"><a href="#redis的数据类型" class="headerlink" title="redis的数据类型"></a>redis的数据类型</h2><ul>
+<li><p><strong>(一)String</strong></p>
 <blockquote>
-<p>1.改写父进程，在子进程死后要为它收尸。具体做法是接管SIGCHLD 信号。子进程死后，会发送SIGCHLD 信号给父进程，父进程收到此信号后，执行waitpid()函数为子进程收尸。这是基于这样的原理：就算父进程没有调用wait，内核也会向它发送SIGCHLD 消息，尽管对的默认处理是忽略，如果想响应这个消息，可以设置一个处理函数。<br>2.把父进程杀掉。父进程死后，僵尸进程成为”孤儿进程”，过继给1 号进程init，init 始终会负责清理僵尸进程．它产生的所有僵尸进程也跟着消失。</p>
+<p>这个其实没啥好说的，最常规的set/get操作，value可以是String也可以是数字。一般做一些复杂的计数功能的缓存。</p>
+</blockquote>
+</li>
+<li><p><strong>(二)hash</strong></p>
+<blockquote>
+<p>这里value存放的是结构化的对象，比较方便的就是操作其中的某个字段。博主在做单点登录的时候，就是用这种数据结构存储用户信息，以cookieId作为key，设置30分钟为缓存过期时间，能很好的模拟出类似session的效果。</p>
+</blockquote>
+</li>
+<li><p><strong>(三)list</strong></p>
+<blockquote>
+<p>使用List的数据结构，<strong>可以做简单的消息队列的功能</strong>另外还有一个就是，<strong>可以利用lrange命令</strong>，做基于redis的分页功能，性能极佳，用户体验好。本人还用一个场景，很合适—取行情信息。就也是个生产者和消费者的场景。LIST可以很好的完成排队，先进先出的原则。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">twitter的关注列表、粉丝列表等都可以用Redis的list结构来实现，</span><br><span class="line">再比如有的应用使用Redis的list类型实现一个简单的轻量级消息队列，生产者push，消费者pop/bpop。</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p><strong>(四)set</strong></p>
+<blockquote>
+<p>因为set堆放的是一堆不重复值的集合。<strong>所以可以做全局去重的功能</strong>为什么不用JVM自带的Set进行去重？因为我们的系统一般都是集群部署，使用JVM自带的Set，比较麻烦，难道为了一个做一个全局去重，再起一个公共服务，太麻烦了。<br><strong>另外，就是利用交集、并集、差集等操作，可以计算共同喜好，全部的喜好，自己独有的喜好等功能。</strong></p>
+</blockquote>
+</li>
+<li><p><strong>(五)sorted set</strong></p>
+<blockquote>
+<p>sorted set多了一个权重参数score,集合中的元素能够按score进行排列。<strong>可以做排行榜应用</strong>，取TOP N操作。</p>
 </blockquote>
 </li>
 </ul>
-<h4 id="4-进程同步PV信号量"><a href="#4-进程同步PV信号量" class="headerlink" title="4.进程同步PV信号量"></a>4.进程同步PV信号量</h4><p><a href="https://blog.csdn.net/leves1989/article/details/3305609" target="_blank" rel="noopener">link</a></p>
-<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><h4 id="1-死锁产生的必要条件"><a href="#1-死锁产生的必要条件" class="headerlink" title="1.死锁产生的必要条件"></a>1.死锁产生的必要条件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.互斥条件:一个资源每次只能被一个进程使用</span><br><span class="line">2.不可剥夺条件:进程已获得的资源，在末使用完之前，不能强行剥夺</span><br><span class="line">3.请求与保持条件:一个进程因请求资源而阻塞时，对已获得的资源保持不放</span><br><span class="line">4.循环等待条件:若干进程之间形成一种头尾相接的循环等待资源关系</span><br></pre></td></tr></table></figure>
-<h4 id="2-如何预防，避免，解除"><a href="#2-如何预防，避免，解除" class="headerlink" title="2.如何预防，避免，解除"></a>2.如何预防，避免，解除</h4><blockquote>
-<p><strong>预防</strong>：破坏四个条件之一<br><strong>避免</strong>：1.安全序列，2.银行家算法<br><strong>解除</strong>：杀死进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">避免死锁：银行家算法：</span><br><span class="line">该算法需要检查申请者对资源的最大需求量，如果系统现存的各类资源可以满足申请者的请求，就满足申请者的请求。</span><br><span class="line">这样申请者就可很快完成其计算，然后释放它占用的资源，从而保证了系统中的所有进程都能完成，所以可避免死锁的发生。</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h4 id="4-如何理解分布式锁"><a href="#4-如何理解分布式锁" class="headerlink" title="4.如何理解分布式锁"></a>4.如何理解分布式锁</h4><p><img src="https://upload-images.jianshu.io/upload_images/2155796-c8a435c76444b32c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="java面经.jpg"></p>
-<h2 id="同步-异步-阻塞-非阻塞"><a href="#同步-异步-阻塞-非阻塞" class="headerlink" title="同步 异步 阻塞 非阻塞"></a>同步 异步 阻塞 非阻塞</h2><p> <a href="https://www.cnblogs.com/George1994/p/6702084.html" target="_blank" rel="noopener">link</a></p>
-<h4 id="同步异步"><a href="#同步异步" class="headerlink" title="同步异步"></a>同步异步</h4><blockquote>
-<p><strong>同步异步关注的是消息通信机制。</strong></p>
+<h2 id="redis的过期策略以及内存淘汰机制"><a href="#redis的过期策略以及内存淘汰机制" class="headerlink" title="redis的过期策略以及内存淘汰机制"></a>redis的过期策略以及内存淘汰机制</h2><p><strong>redis采用的是定期删除+惰性删除策略。</strong></p>
 <ul>
-<li><strong>同步</strong>： 就是在发出一个调用是，在没得到结果之前，就不返回，一旦调用返回，就得到返回值。</li>
-<li><strong>异步</strong>：调用在发出之后，这个调用就直接返回了，所以没有返回结果。即当一个异步过程调用发出后，调用者不会立即得到结果。<br><strong>阻塞和非阻塞关注的是程序在等待调用结果时的状态</strong></li>
-<li><strong>阻塞</strong>：阻塞调用是指调用结构返回之前，当前线程会被挂起。调用线程只有在得到结果后才会返回</li>
-<li><strong>非阻塞</strong>：非阻塞调用就是指在不能立刻得到结果之前，该调用不会阻塞当前线程。</li>
-</ul>
+<li><p>原理</p>
+<blockquote>
+<p>1.定期删除，redis默认每个100ms检查，是否有过期的key,有过期key则删除。需要说明的是，redis不是每个100ms将所有的key检查一次，而是随机抽取进行检查(如果每隔100ms,全部key进行检查，redis岂不是卡死)。因此，如果只采用定期删除策略，会导致很多key到时间没有删除。<br>2.于是，惰性删除派上用场。也就是说在你获取某个key的时候，redis会检查一下，这个key如果设置了过期时间那么是否过期了？如果过期了此时就会删除。</p>
 </blockquote>
+</li>
+<li><p>内存淘汰策略</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在redis.conf中有一行配置</span><br><span class="line">maxmemory-policy volatile-lru</span><br></pre></td></tr></table></figure>
+<h2 id="redis持久化方式"><a href="#redis持久化方式" class="headerlink" title="redis持久化方式"></a>redis持久化方式</h2></li>
+<li><p><strong>RDB</strong></p>
+<blockquote>
+<p>RDB持久化是指定期将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩存储。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.redis的主从复制也是基于rdb</span><br><span class="line">2.save通常会阻塞redis；</span><br><span class="line">3.bgsave通常不会阻塞redis，但是会fork新进程；</span><br><span class="line">4.save自动配置满足任一就会被执行；</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p><strong>AOF</strong></p>
+<blockquote>
+<p>AOF持久化以<strong>日志</strong>的形式记录服务器所处理的每一个写、删除操作，查询操作不会记录，以文本的方式记录，可以打开文件看到详细的操作记录。</p>
+</blockquote>
+</li>
+<li><p><strong>二者选择</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">一.RDB</span><br><span class="line">1.耗费内存，耗io性能</span><br><span class="line">2.重启效率高。体积小，恢复速度快。</span><br><span class="line">3.rdb做了压缩，体积更小。</span><br><span class="line">4.实时性不好，在没来及持久化就宕机情况。</span><br><span class="line">二.AOF</span><br><span class="line">1.安全性更高。宕机不会破坏日志里已经写好的问题。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">二者选择的标准，就是看系统是愿意牺牲一些性能，换取更高的缓存一致性（aof），</span><br><span class="line">还是愿意写操作频繁的时候，不启用备份来换取更高的性能，待手动运行save的时候，再做备份（rdb）。rdb这个就更有些 eventually consistent的意思了。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="redis应用场景"><a href="#redis应用场景" class="headerlink" title="redis应用场景"></a>redis应用场景</h2><p>1.会话缓存（session cache）<br>2.全页缓存（FPC）<br>3.队列（list push/pop）<br>4.排行榜/计数器</p>
+<h2 id="redis异步队列做什么用的"><a href="#redis异步队列做什么用的" class="headerlink" title="redis异步队列做什么用的"></a>redis异步队列做什么用的</h2><p>先拿setnx来争抢锁，抢到之后，再用expire给锁加一个过期时间防止锁忘记了释放。</p>
+<p>一般使用list结构作为队列，rpush生产消息，lpop消费消息。当lpop没有消息的时候，要适当sleep一会再重试。</p>
+<p>如果对方追问可不可以不用sleep呢？list还有个指令叫blpop，在没有消息的时候，它会阻塞住直到消息到来。 </p>
+<p>如果对方追问能不能生产一次消费多次呢？使用pub/sub主题订阅者模式，可以实现1:N的消息队列。</p>
+<p>如果对方追问pub/sub有什么缺点？在消费者下线的情况下，生产的消息会丢失，得使用专业的消息队列如rabbitmq等。</p>
+<p>如果对方追问redis如何实现延时队列？我估计现在你很想把面试官一棒打死如果你手上有一根棒球棍的话，怎么问的这么详细。但是你很克制，然后神态自若的回答道：使用sortedset，拿时间戳作为score，消息内容作为key调用zadd来生产消息，消费者用zrangebyscore指令获取N秒之前的数据轮询进行处理。</p>
+<h2 id="redis集群原理"><a href="#redis集群原理" class="headerlink" title="redis集群原理"></a>redis集群原理</h2><p>Redis Sentinal着眼于高可用，在master宕机时会自动将slave提升为master，继续提供服务。</p>
+<p>Redis Cluster着眼于扩展性，在单个redis内存不足时，使用Cluster进行分片存储。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://yoursite.com">Jeremy Yang</a>
-            <p>原文链接：<a href="http://yoursite.com/2018/10/23/os-note/">http://yoursite.com/2018/10/23/os-note/</a>
-            <p>发表日期：<a href="http://yoursite.com/2018/10/23/os-note/">October 23rd 2018, 9:14:22 pm</a>
-            <p>更新日期：<a href="http://yoursite.com/2018/10/23/os-note/">October 30th 2018, 12:56:19 am</a>
+            <p>原文链接：<a href="http://yoursite.com/2018/10/29/redis-note/">http://yoursite.com/2018/10/29/redis-note/</a>
+            <p>发表日期：<a href="http://yoursite.com/2018/10/29/redis-note/">October 29th 2018, 8:34:34 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2018/10/29/redis-note/">October 29th 2018, 10:49:57 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -468,17 +516,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2018/10/29/redis-note/" title= "redis_note">
-                    <div class="nextTitle">redis_note</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2018/10/20/mysql-note/" title= "数据库知识点终结">
-                    <div class="prevTitle">数据库知识点终结</div>
+                <a href= "/2018/10/23/os-note/" title= "操作系统知识点总结">
+                    <div class="prevTitle">操作系统知识点总结</div>
                 </a>
             
         </li>
@@ -613,7 +656,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进程线程"><span class="toc-number">1.</span> <span class="toc-text">进程线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-进程线程及区别"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.进程线程及区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-进程通信方式"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.进程通信方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-僵尸进程"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.僵尸进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-进程同步PV信号量"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.进程同步PV信号量</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#死锁"><span class="toc-number">2.</span> <span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-死锁产生的必要条件"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.死锁产生的必要条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-如何预防，避免，解除"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.如何预防，避免，解除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-如何理解分布式锁"><span class="toc-number">2.0.3.</span> <span class="toc-text">4.如何理解分布式锁</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步-异步-阻塞-非阻塞"><span class="toc-number">3.</span> <span class="toc-text">同步 异步 阻塞 非阻塞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#同步异步"><span class="toc-number">3.0.1.</span> <span class="toc-text">同步异步</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis"><span class="toc-number">1.</span> <span class="toc-text">redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么使用redis"><span class="toc-number">2.</span> <span class="toc-text">为什么使用redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用redis有什么缺点"><span class="toc-number">3.</span> <span class="toc-text">使用redis有什么缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单线程的redis为什么这么快"><span class="toc-number">4.</span> <span class="toc-text">单线程的redis为什么这么快</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis的数据类型"><span class="toc-number">5.</span> <span class="toc-text">redis的数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis的过期策略以及内存淘汰机制"><span class="toc-number">6.</span> <span class="toc-text">redis的过期策略以及内存淘汰机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis持久化方式"><span class="toc-number">7.</span> <span class="toc-text">redis持久化方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis应用场景"><span class="toc-number">8.</span> <span class="toc-text">redis应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis异步队列做什么用的"><span class="toc-number">9.</span> <span class="toc-text">redis异步队列做什么用的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis集群原理"><span class="toc-number">10.</span> <span class="toc-text">redis集群原理</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
