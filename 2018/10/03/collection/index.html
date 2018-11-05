@@ -283,7 +283,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">5.4k</span>阅读时长: <span class="post-count reading-time">24 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">5.6k</span>阅读时长: <span class="post-count reading-time">25 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -446,15 +446,15 @@ height:50vh;
 <li><p>LinkedHashMap：使用双向链表来维护元素的顺序，顺序为插入顺序或者最近最少使用（LRU）顺序。</p>
 </li>
 </ul>
-<h2 id="2-源码分析"><a href="#2-源码分析" class="headerlink" title="2.源码分析"></a>2.源码分析</h2><h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h2><h3 id="1-概览"><a href="#1-概览" class="headerlink" title="1. 概览"></a>1. 概览</h3><p>实现了 RandomAccess 接口，因此支持随机访问。这是理所当然的，因为 ArrayList 是基于数组实现的。</p>
+<h2 id="2-源码分析"><a href="#2-源码分析" class="headerlink" title="2.源码分析"></a>2.源码分析</h2><h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h2><h3 id="1-概览"><a href="#1-概览" class="headerlink" title="1. 概览"></a>1. 概览</h3><p>实现了 <strong>RandomAccess</strong> 接口，因此<strong>支持随机访问</strong>。这是理所当然的，因为 ArrayList 是基于数组实现的。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt;</span><br><span class="line">        implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable</span><br></pre></td></tr></table></figure>
 <p>数组的默认大小为 10。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private static final int DEFAULT_CAPACITY = 10;</span><br></pre></td></tr></table></figure>
 <p>###2. 扩容</p>
-<p>添加元素时使用 ensureCapacityInternal() 方法来保证容量足够，如果不够时，需要使用 grow() 方法进行扩容，新容量的大小为 <code>oldCapacity + (oldCapacity &gt;&gt; 1)</code>，也就是旧容量的 1.5 倍。</p>
-<p>扩容操作需要调用 <code>Arrays.copyOf()</code> 把原数组整个复制到新数组中，这个操作代价很高，因此最好在创建 ArrayList 对象时就指定大概的容量大小，减少扩容操作的次数。</p>
+<p>添加元素时使用<strong>ensureCapacityInternal()</strong> 方法来保证容量足够，如果不够时，需要使用 <strong>grow</strong>方法进行扩容，新容量的大小为 <code>oldCapacity + (oldCapacity &gt;&gt; 1)</code>，也就是旧容量的 1.5 倍。</p>
+<p>扩容操作需要调用 <strong><code>Arrays.copyOf()</code></strong> 把<strong>原数组整个复制到新数组中</strong>，这个操作代价很高，因此最好在创建 ArrayList 对象时就指定大概的容量大小，减少扩容操作的次数。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public boolean add(E e) &#123;</span><br><span class="line">    ensureCapacityInternal(size + 1);  // Increments modCount!!</span><br><span class="line">    elementData[size++] = e;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void ensureCapacityInternal(int minCapacity) &#123;</span><br><span class="line">    if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;</span><br><span class="line">        minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);</span><br><span class="line">    &#125;</span><br><span class="line">    ensureExplicitCapacity(minCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void ensureExplicitCapacity(int minCapacity) &#123;</span><br><span class="line">    modCount++;</span><br><span class="line">    // overflow-conscious code</span><br><span class="line">    if (minCapacity - elementData.length &gt; 0)</span><br><span class="line">        grow(minCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void grow(int minCapacity) &#123;</span><br><span class="line">    // overflow-conscious code</span><br><span class="line">    int oldCapacity = elementData.length;</span><br><span class="line">    int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);</span><br><span class="line">    if (newCapacity - minCapacity &lt; 0)</span><br><span class="line">        newCapacity = minCapacity;</span><br><span class="line">    if (newCapacity - MAX_ARRAY_SIZE &gt; 0)</span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">    // minCapacity is usually close to size, so this is a win:</span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-删除元素"><a href="#3-删除元素" class="headerlink" title="3. 删除元素"></a>3. 删除元素</h3><p>需要调用 System.arraycopy() 将 index+1 后面的元素都复制到 index 位置上，该操作的时间复杂度为 O(N)，可以看出 ArrayList 删除元素的代价是非常高的。</p>
+<h3 id="3-删除元素"><a href="#3-删除元素" class="headerlink" title="3. 删除元素"></a>3. 删除元素</h3><p>需要调用 System.arraycopy() 将 index+1 后面的元素都复制到 index 位置上，该操作的时间复杂度为 O(N)，可以看出 ArrayList 删除元素的代价是非常高的。还有可能缩小容量。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public E remove(int index) &#123;</span><br><span class="line">    rangeCheck(index);</span><br><span class="line">    modCount++;</span><br><span class="line">    E oldValue = elementData(index);</span><br><span class="line">    int numMoved = size - index - 1;</span><br><span class="line">    if (numMoved &gt; 0)</span><br><span class="line">        System.arraycopy(elementData, index+1, elementData, index, numMoved);</span><br><span class="line">    elementData[--size] = null; // clear to let GC do its work</span><br><span class="line">    return oldValue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="4-Fail-Fast"><a href="#4-Fail-Fast" class="headerlink" title="4. Fail-Fast"></a>4. Fail-Fast</h3><p>modCount 用来记录 ArrayList 结构发生变化的次数。结构发生变化是指添加或者删除至少一个元素的所有操作，或者是调整内部数组的大小，仅仅只是设置元素的值不算结构发生变化。</p>
 <p>在进行序列化或者迭代等操作时，需要比较操作前后 modCount 是否改变，如果改变了需要抛出 ConcurrentModificationException。</p>
@@ -478,16 +478,11 @@ height:50vh;
 <p>也可以使用 concurrent 并发包下的 CopyOnWriteArrayList 类。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = new CopyOnWriteArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
 <p>##CopyOnWriteArrayList</p>
-<h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>写操作在一个复制的数组上进行，读操作还是在原始数组中进行，读写分离，互不影响。<br>写操作需要加锁，防止并发写入时导致写入数据丢失。<br>写操作结束之后需要把原始数组指向新的复制数组。</p>
+<h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>1.<strong>写操作在一个复制的数组上进行，读操作还是在原始数组中进行，读写分离，互不影响。</strong><br>2.<strong>写操作需要加锁lock</strong>，防止并发写入时导致写入数据丢失。<br>3.写操作结束之后需要把原始数组指向新的复制数组。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public boolean add(E e) &#123;</span><br><span class="line">    final ReentrantLock lock = this.lock;</span><br><span class="line">    lock.lock();</span><br><span class="line">    try &#123;</span><br><span class="line">        Object[] elements = getArray();</span><br><span class="line">        int len = elements.length;</span><br><span class="line">        Object[] newElements = Arrays.copyOf(elements, len + 1);</span><br><span class="line">        newElements[len] = e;</span><br><span class="line">        setArray(newElements);</span><br><span class="line">        return true;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">final void setArray(Object[] a) &#123;</span><br><span class="line">    array = a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">private E get(Object[] a, int index) &#123;</span><br><span class="line">    return (E) a[index];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>CopyOnWriteArrayList 在写操作的同时允许读操作，大大提高了读操作的性能，因此很适合读多写少的应用场景。</p>
-<p>但是 CopyOnWriteArrayList 有其缺陷：</p>
-<ul>
-<li>内存占用：在写操作时需要复制一个新的数组，使得内存占用为原来的两倍左右；</li>
-<li>数据不一致：读操作不能读取实时性的数据，因为部分写操作的数据还未同步到读数组中。</li>
-</ul>
-<p>所以 CopyOnWriteArrayList 不适合内存敏感以及对实时性要求很高的场景。</p>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><p>CopyOnWriteArrayList 在写操作的同时允许读操作，大大提高了读操作的性能，因此很适合<strong>读多写少</strong>的应用场景。</p>
+<p>但是 CopyOnWriteArrayList 有其缺陷：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* 内存占用：在写操作时需要复制一个新的数组，使得内存占用为原来的两倍左右；</span><br><span class="line">* 数据不一致：读操作不能读取实时性的数据，因为部分写操作的数据还未同步到读数组中。</span><br><span class="line"></span><br><span class="line">所以 CopyOnWriteArrayList 不适合内存敏感以及对实时性要求很高的场景。</span><br></pre></td></tr></table></figure></p>
 <h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h2><h3 id="1-概览-1"><a href="#1-概览-1" class="headerlink" title="1. 概览"></a>1. 概览</h3><p>基于双向链表实现，使用 Node 存储链表节点信息。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private static class Node&lt;E&gt; &#123;</span><br><span class="line">    E item;</span><br><span class="line">    Node&lt;E&gt; next;</span><br><span class="line">    Node&lt;E&gt; prev;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>每个链表存储了 first 和 last 指针：</p>
@@ -496,21 +491,23 @@ height:50vh;
 <h3 id="2-与-ArrayList-的比较-1"><a href="#2-与-ArrayList-的比较-1" class="headerlink" title="2. 与 ArrayList 的比较"></a>2. 与 ArrayList 的比较</h3><ul>
 <li>ArrayList 基于动态数组实现，LinkedList 基于双向链表实现；</li>
 <li>ArrayList 支持随机访问，LinkedList 不支持；</li>
-<li>LinkedList 在任意位置添加删除元素更快。</li>
+<li>LinkedList 在<strong>任意位置</strong>添加删除元素更快。</li>
 </ul>
 <h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><p>为了便于理解，以下源码分析以 JDK 1.7 为主。</p>
 <h3 id="1-存储结构"><a href="#1-存储结构" class="headerlink" title="1. 存储结构"></a>1. 存储结构</h3><p>内部包含了一个 Entry 类型的数组 table。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transient Entry[] table;</span><br></pre></td></tr></table></figure>
-<p>Entry 存储着键值对。HashMap 使用拉链法来解决冲突，同一个链表中存放哈希值相同的 Entry。</p>
+<p>Entry 存储着键值对。HashMap 使用<strong>拉链法</strong>来解决冲突，同一个链表中存放<strong>哈希值</strong>相同的 Entry。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/2155796-bbc0d4ad3705c42a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">static class Entry&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; &#123;</span><br><span class="line">    final K key;</span><br><span class="line">    V value;</span><br><span class="line">    Entry&lt;K,V&gt; next;</span><br><span class="line">    int hash;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="2-put-操作"><a href="#2-put-操作" class="headerlink" title="2. put 操作"></a>2. put 操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public V put(K key, V value) &#123;</span><br><span class="line">    if (table == EMPTY_TABLE) &#123;</span><br><span class="line">        inflateTable(threshold);</span><br><span class="line">    &#125;</span><br><span class="line">    // 键为 null 单独处理</span><br><span class="line">    if (key == null)</span><br><span class="line">        return putForNullKey(value);</span><br><span class="line">    int hash = hash(key);</span><br><span class="line">    // 确定桶下标</span><br><span class="line">    int i = indexFor(hash, table.length);</span><br><span class="line">    // 先找出是否已经存在键为 key 的键值对，如果存在的话就更新这个键值对的值为 value</span><br><span class="line">    for (Entry&lt;K,V&gt; e = table[i]; e != null; e = e.next) &#123;</span><br><span class="line">        Object k;</span><br><span class="line">        if (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) &#123;</span><br><span class="line">            V oldValue = e.value;</span><br><span class="line">            e.value = value;</span><br><span class="line">            e.recordAccess(this);</span><br><span class="line">            return oldValue;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    modCount++;</span><br><span class="line">    // 插入新键值对</span><br><span class="line">    addEntry(hash, key, value, i);</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>HashMap 允许插入键为 null 的键值对。但是因为无法调用 null 的 hashCode() 方法，也就无法确定该键值对的桶下标，只能通过强制指定一个桶下标来存放。HashMap 使用第 0 个桶存放键为 null 的键值对。</p>
-<p>使用链表的头插法，也就是新的键值对插在链表的头部，而不是链表的尾部。</p>
+<blockquote>
+<p>HashMap 允许插入键为 null 的键值对。但是因为无法调用 null 的 hashCode() 方法，也就无法确定该键值对的桶下标，只能通过强制指定一个桶下标来存放。<strong>HashMap 使用第 0 个桶存放键为 null 的键值对</strong>。</p>
+</blockquote>
+<p><strong>使用链表的头插法，也就是新的键值对插在链表的头部，而不是链表的尾部</strong>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.8改为尾插的原因：（扩容，并发操作出错）</span><br><span class="line">1.扩容的时候会造成链表逆序，容易出现环形链表</span><br><span class="line">2.并发插入时会出现数据丢失，因为并发时拿到的链头可能不是最新的链头，会出现后面的覆盖掉前面数据的情况</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void addEntry(int hash, K key, V value, int bucketIndex) &#123;</span><br><span class="line">    if ((size &gt;= threshold) &amp;&amp; (null != table[bucketIndex])) &#123;</span><br><span class="line">        resize(2 * table.length);</span><br><span class="line">        hash = (null != key) ? hash(key) : 0;</span><br><span class="line">        bucketIndex = indexFor(hash, table.length);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    createEntry(hash, key, value, bucketIndex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void createEntry(int hash, K key, V value, int bucketIndex) &#123;</span><br><span class="line">    Entry&lt;K,V&gt; e = table[bucketIndex];</span><br><span class="line">    // 头插法，链表头部指向新的键值对</span><br><span class="line">    table[bucketIndex] = new Entry&lt;&gt;(hash, key, value, e);</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="3-确定桶下标"><a href="#3-确定桶下标" class="headerlink" title="3. 确定桶下标"></a>3. 确定桶下标</h3><p>很多操作都需要先确定一个键值对所在的桶下标。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int hash = hash(key);</span><br><span class="line">int i = indexFor(hash, table.length);</span><br></pre></td></tr></table></figure>
-<p><strong>3.1 计算 hash 值</strong></p>
+<p><strong>3.1 计算 hash 值</strong>（4次位运算和5次异或运算）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">final int hash(Object k) &#123;</span><br><span class="line">    int h = hashSeed;</span><br><span class="line">    if (0 != h &amp;&amp; k instanceof String) &#123;</span><br><span class="line">        return sun.misc.Hashing.stringHash32((String) k);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    h ^= k.hashCode();</span><br><span class="line"></span><br><span class="line">    // This function ensures that hashCodes that differ only by</span><br><span class="line">    // constant multiples at each bit position have a bounded</span><br><span class="line">    // number of collisions (approximately 8 at default load factor).</span><br><span class="line">    h ^= (h &gt;&gt;&gt; 20) ^ (h &gt;&gt;&gt; 12);</span><br><span class="line">    return h ^ (h &gt;&gt;&gt; 7) ^ (h &gt;&gt;&gt; 4);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public final int hashCode() &#123;</span><br><span class="line">    return Objects.hashCode(key) ^ Objects.hashCode(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>3.2 取模</strong></p>
@@ -570,7 +567,7 @@ height:50vh;
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num     10010000</span><br><span class="line">mask+1 100000000</span><br></pre></td></tr></table></figure>
 <p>以下是 HashMap 中计算数组容量的代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">static final int tableSizeFor(int cap) &#123;</span><br><span class="line">    int n = cap - 1;</span><br><span class="line">    n |= n &gt;&gt;&gt; 1;</span><br><span class="line">    n |= n &gt;&gt;&gt; 2;</span><br><span class="line">    n |= n &gt;&gt;&gt; 4;</span><br><span class="line">    n |= n &gt;&gt;&gt; 8;</span><br><span class="line">    n |= n &gt;&gt;&gt; 16;</span><br><span class="line">    return (n &lt; 0) ? 1 : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>扩2倍是为了是hashmap分布均匀，减少hash冲突。</p>
+<p><strong>扩2倍是为了是hashmap分布均匀，减少hash冲突</strong></p>
 <h3 id="8-链表转红黑树"><a href="#8-链表转红黑树" class="headerlink" title="8. 链表转红黑树"></a>8. 链表转红黑树</h3><p>从 JDK 1.8 开始，一个桶存储的链表长度大于 8 时会将链表转换为红黑树。</p>
 <h3 id="9-与-HashTable-的比较"><a href="#9-与-HashTable-的比较" class="headerlink" title="9. 与 HashTable 的比较"></a>9. 与 HashTable 的比较</h3><ul>
 <li>HashTable 使用 synchronized 来进行同步。</li>
@@ -579,8 +576,9 @@ height:50vh;
 <li>HashMap 不能保证随着时间的推移 Map 中的元素次序是不变的。</li>
 </ul>
 <h3 id="10-JDK1-8HashMap做了什么改变"><a href="#10-JDK1-8HashMap做了什么改变" class="headerlink" title="10.JDK1.8HashMap做了什么改变"></a>10.JDK1.8HashMap做了什么改变</h3><ul>
-<li>结构 数组+链表+红黑树</li>
-<li>1.7头插 1.8尾插</li>
+<li><strong>结构</strong> 数组+链表+红黑树</li>
+<li>1.7头插 1.8 尾插</li>
+<li><strong>hash处理</strong></li>
 <li>1.7先扩容在插值，1.8 先插值，在扩容</li>
 <li>1.8 capability &lt; 64 时，当链表长度大于8时，不会转变红黑树。</li>
 <li>1.8 计算index<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h = key.hashcode();</span><br><span class="line">h^h(h&gt;&gt;&gt;16)     //干扰作用，让每一位都用的上，减低hash冲突</span><br><span class="line">return h&amp;(length - 1);</span><br></pre></td></tr></table></figure>
@@ -653,7 +651,7 @@ height:50vh;
             <p>原文作者：<a href="http://yoursite.com">Jeremy Yang</a>
             <p>原文链接：<a href="http://yoursite.com/2018/10/03/collection/">http://yoursite.com/2018/10/03/collection/</a>
             <p>发表日期：<a href="http://yoursite.com/2018/10/03/collection/">October 3rd 2018, 4:30:16 pm</a>
-            <p>更新日期：<a href="http://yoursite.com/2018/10/03/collection/">October 20th 2018, 11:12:56 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2018/10/03/collection/">November 3rd 2018, 11:48:24 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -903,6 +901,16 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 8
@@ -964,15 +972,15 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
+    
         <span class="sidebar-tag-name" data-tags="JAVA"><span class="iconfont-archer">&#xe606;</span>JAVA</span>
+    
+        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
     
         <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
         <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
-    
-        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
-    
-        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

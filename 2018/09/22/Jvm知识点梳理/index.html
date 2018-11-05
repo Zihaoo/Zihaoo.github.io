@@ -514,17 +514,20 @@ height:50vh;
 <p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载、验证、准备、解析、初始化、使用和卸载7个阶段。其中验证、准备、解析3个部分统称为连接。</p>
 </blockquote>
 <ul>
-<li><p>加载：</p>
+<li><p><strong>加载</strong>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.通过一个类的全限定名来获取定义此类的二进制字节流。</span><br><span class="line">2.将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</span><br><span class="line">3.在内存中生成一个代表这个类的java.lang.Class对象，作为方法区这个类的各种数据的访问入口。</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>验证：<br>连接阶段的第一步，这一阶段的目的是为了确保Class文件的字节流中包含的信息符合当前虚拟机的要求</p>
+<li><p><strong>验证</strong>：<br>为了确保Class文件的字节流中包含的信息符合当前虚拟机的要求</p>
 </li>
-<li><p>准备：<br>该阶段是正式为类变量（static修饰的变量）分配内存并设置类变量初始值的阶段，这些变量所使用的内存都将在方法区中进行分配。这里所说的初始值“通常情况”下是数据类型的零值，下表列出了Java中所有基本数据类型的零值。</p>
+<li><p><strong>准备</strong>：<br>该阶段是正式为类变量（static修饰的变量）分配内存并设置类变量初始值的阶段，这些变量所使用的内存都将在方法区中进行分配。这里所说的初始值“通常情况”下是数据类型的零值，下表列出了Java中所有基本数据类型的零值。</p>
 </li>
-<li><p>解析：<br>该阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。</p>
+<li><p><strong>解析</strong>：<br>该阶段是虚拟机将<strong>常量池</strong>内的<strong>符号引用</strong>替换为<strong>直接引用</strong>的过程。</p>
 </li>
-<li>初始化：<br>初始化阶段是执行类构造器<clinit>()方法的过程。<clinit>()方法是由编译器自动收集类中的所有类变量（static修饰的变量）的赋值动作和静态语句块（static{}块）中的语句合并产生的，编译器收集的顺序是由语句在源文件中出现的顺序所决定的。如果该类存在父类，则虚拟机会保证在执行子类的<clinit>()方法前，父类的<clinit>()方法已经执行完毕。因此在虚拟机中第一个被执行<clinit>()方法的类肯定是java.lang.Object。</clinit></clinit></clinit></clinit></clinit></li>
+<li><strong>初始化</strong>：<br><strong>初始化阶段是执行类构造器<clinit>()方法的过程。</clinit></strong></li>
 </ul>
+<blockquote>
+<p><strong>什么是动态绑定</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">把一个方法调用和方法的主体关联起来叫做绑定。</span><br><span class="line">那么动态绑定就是在程序运行的时候根据对象的类型进行绑定。</span><br><span class="line">Java中除了static,final,private(编译时为final)，其他的方法都为动态绑定。</span><br></pre></td></tr></table></figure></p>
+</blockquote>
 <h6 id="类加载器分类"><a href="#类加载器分类" class="headerlink" title="类加载器分类"></a>类加载器分类</h6><ul>
 <li><p>从Java虚拟机分</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 启动类加载器</span><br><span class="line">2. 其他类加载器</span><br></pre></td></tr></table></figure>
@@ -534,9 +537,9 @@ height:50vh;
 </li>
 </ul>
 <h6 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h6><ol>
-<li><p>工作过程<br>一个类加载器首先将类加载请求传送到父类加载器，只有当父类加载器无法完成类加载请求时才尝试加载。</p>
+<li><p><strong>工作过程</strong><br>一个类加载器首先将类加载请求传送到父类加载器，只有当父类加载器无法完成类加载请求时才尝试加载。</p>
 </li>
-<li><p>好处<br>使得 Java 类随着它的类加载器一起具有一种带有优先级的层次关系，从而使得基础类得到统一。</p>
+<li><p><strong>好处</strong><br>使得 Java 类随着它的类加载器一起具有一种带有优先级的层次关系，从而使得基础类得到统一。<strong>防止类重复加载。</strong></p>
 </li>
 </ol>
 <h4 id="10-内存泄漏和内存溢出"><a href="#10-内存泄漏和内存溢出" class="headerlink" title="10. 内存泄漏和内存溢出"></a>10. 内存泄漏和内存溢出</h4><blockquote>
@@ -550,7 +553,7 @@ height:50vh;
             <p>原文作者：<a href="http://yoursite.com">Jeremy Yang</a>
             <p>原文链接：<a href="http://yoursite.com/2018/09/22/Jvm知识点梳理/">http://yoursite.com/2018/09/22/Jvm知识点梳理/</a>
             <p>发表日期：<a href="http://yoursite.com/2018/09/22/Jvm知识点梳理/">September 22nd 2018, 1:25:31 pm</a>
-            <p>更新日期：<a href="http://yoursite.com/2018/09/22/Jvm知识点梳理/">October 11th 2018, 9:20:01 am</a>
+            <p>更新日期：<a href="http://yoursite.com/2018/09/22/Jvm知识点梳理/">November 3rd 2018, 9:04:58 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -795,6 +798,16 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 8
@@ -856,15 +869,15 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
+    
         <span class="sidebar-tag-name" data-tags="JAVA"><span class="iconfont-archer">&#xe606;</span>JAVA</span>
+    
+        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
     
         <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
         <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
-    
-        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
-    
-        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
