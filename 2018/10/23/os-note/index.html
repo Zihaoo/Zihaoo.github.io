@@ -283,7 +283,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.5k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -446,12 +446,17 @@ height:50vh;
 <h4 id="同步异步"><a href="#同步异步" class="headerlink" title="同步异步"></a>同步异步</h4><blockquote>
 <p><strong>同步异步关注的是消息通信机制。</strong></p>
 <ul>
-<li><strong>同步</strong>： 就是在发出一个调用是，在没得到结果之前，就不返回，一旦调用返回，就得到返回值。</li>
+<li><strong>同步</strong>： 就是在发出一个调用时，在没得到结果之前，就不返回，一旦调用返回，就得到返回值。</li>
 <li><strong>异步</strong>：调用在发出之后，这个调用就直接返回了，所以没有返回结果。即当一个异步过程调用发出后，调用者不会立即得到结果。<br><strong>阻塞和非阻塞关注的是程序在等待调用结果时的状态</strong></li>
-<li><strong>阻塞</strong>：阻塞调用是指调用结构返回之前，当前线程会被挂起。调用线程只有在得到结果后才会返回</li>
+<li><strong>阻塞</strong>：阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果后才会返回</li>
 <li><strong>非阻塞</strong>：非阻塞调用就是指在不能立刻得到结果之前，该调用不会阻塞当前线程。</li>
 </ul>
 </blockquote>
+<h2 id="CPU调度算法"><a href="#CPU调度算法" class="headerlink" title="CPU调度算法"></a>CPU调度算法</h2><blockquote>
+<p>由于要执行的进程的数目是多于处理器的数目，所以需要处<br>理器去决定下一次运行哪个进程</p>
+</blockquote>
+<p><strong>1.先来先服务</strong>：按照作业的先后顺序，简单公平，<strong>不利于短作业</strong><br><strong>2.短作业优先</strong>：有限处理短作业，缺点：需要预先知道作业处理时间，对长作业不利<br><strong>3.高响应比优先</strong>：<br>等待时间+要求服务时间/要求服务时间<br><strong>4.优先级调度算法</strong><br>基于作业的紧迫程度。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5.时间片轮转调度算法</span><br></pre></td></tr></table></figure></p>
+<p>时间片轮转调度算法主要适用于分时系统。在这种算法中，系统将所有就绪进程按到达时间的先后次序排成一个<br>队列，进程调度程序总是选择就绪队列中第一个进程执行，即先来先服务的原则，但仅能运行一个时间片，如100ms。<br>在使用完一个时间片后，即使进程并未完成其运行，它也必须释放出（被剥夺）处理机给下一个就绪的进程，而被剥夺<br>的进程返回到就绪队列的末尾重新排队，等候再次运行。<br><code>`</code></p>
 
     </article>
     <!-- license  -->
@@ -460,7 +465,7 @@ height:50vh;
             <p>原文作者：<a href="http://yoursite.com">Jeremy Yang</a>
             <p>原文链接：<a href="http://yoursite.com/2018/10/23/os-note/">http://yoursite.com/2018/10/23/os-note/</a>
             <p>发表日期：<a href="http://yoursite.com/2018/10/23/os-note/">October 23rd 2018, 9:14:22 pm</a>
-            <p>更新日期：<a href="http://yoursite.com/2018/10/23/os-note/">October 30th 2018, 12:56:19 am</a>
+            <p>更新日期：<a href="http://yoursite.com/2018/10/23/os-note/">November 8th 2018, 12:05:21 am</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -469,8 +474,8 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2018/10/29/redis-note/" title= "redis_note">
-                    <div class="nextTitle">redis_note</div>
+                <a href= "/2018/10/29/redis-note/" title= "redis学习笔记">
+                    <div class="nextTitle">redis学习笔记</div>
                 </a>
             
         </li>
@@ -613,7 +618,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进程线程"><span class="toc-number">1.</span> <span class="toc-text">进程线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-进程线程及区别"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.进程线程及区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-进程通信方式"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.进程通信方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-僵尸进程"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.僵尸进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-进程同步PV信号量"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.进程同步PV信号量</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#死锁"><span class="toc-number">2.</span> <span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-死锁产生的必要条件"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.死锁产生的必要条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-如何预防，避免，解除"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.如何预防，避免，解除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-如何理解分布式锁"><span class="toc-number">2.0.3.</span> <span class="toc-text">4.如何理解分布式锁</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步-异步-阻塞-非阻塞"><span class="toc-number">3.</span> <span class="toc-text">同步 异步 阻塞 非阻塞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#同步异步"><span class="toc-number">3.0.1.</span> <span class="toc-text">同步异步</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进程线程"><span class="toc-number">1.</span> <span class="toc-text">进程线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-进程线程及区别"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.进程线程及区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-进程通信方式"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.进程通信方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-僵尸进程"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.僵尸进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-进程同步PV信号量"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.进程同步PV信号量</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#死锁"><span class="toc-number">2.</span> <span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-死锁产生的必要条件"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.死锁产生的必要条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-如何预防，避免，解除"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.如何预防，避免，解除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-如何理解分布式锁"><span class="toc-number">2.0.3.</span> <span class="toc-text">4.如何理解分布式锁</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步-异步-阻塞-非阻塞"><span class="toc-number">3.</span> <span class="toc-text">同步 异步 阻塞 非阻塞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#同步异步"><span class="toc-number">3.0.1.</span> <span class="toc-text">同步异步</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU调度算法"><span class="toc-number">4.</span> <span class="toc-text">CPU调度算法</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -626,14 +631,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -738,7 +735,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">10/29</span><a class="archive-post-title" href= "/2018/10/29/redis-note/" >redis_note</a>
+            <span class="archive-post-date">10/29</span><a class="archive-post-title" href= "/2018/10/29/redis-note/" >redis学习笔记</a>
         </li>
     
     
@@ -785,11 +782,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="JAVA"><span class="iconfont-archer">&#xe606;</span>JAVA</span>
     
-        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
-    
         <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
         <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
+    
+        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
