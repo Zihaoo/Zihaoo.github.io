@@ -283,7 +283,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">2.9k</span>阅读时长: <span class="post-count reading-time">14 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">3.4k</span>阅读时长: <span class="post-count reading-time">16 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -494,7 +494,46 @@ private boolean helper(char[] matrix, int rows, int cols, int i, int j, char[] s
     return false;
 }
 </code></pre><p>}</p>
-<p><code>`</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">## 13.机器人的运动范围</span><br><span class="line">**题目**</span><br><span class="line">地上有一个 m 行和 n 列的方格。一个机器人从坐标 (0, 0) 的格子开始移动，每一次只能向左右上下四个方向移动一格，但是不能进入行坐标和列坐标的**数位之和**大于 k 的格子。</span><br><span class="line"></span><br><span class="line">例如，当 k 为 18 时，机器人能够进入方格 (35,37)，因为 3+5+3+7=18。但是，它不能进入方格 (35,37)，因为 3+5+3+8=19。请问该机器人能够达到多少个格子？</span><br><span class="line"></span><br><span class="line">**思路**</span><br></pre></td></tr></table></figure>
+<p>public class RobotRun {</p>
+<pre><code>public int movingCount(int threshold, int rows, int cols){
+    boolean[][] flag = new boolean[rows][cols];
+    return helper(threshold,rows,cols,0,0,flag);
+}
+
+private int helper(int threshold, int rows, int cols, int i, int j,boolean[][] flag){
+    if(i &lt; 0 || i &gt;= rows || j &lt; 0 || j &gt;= cols || sum(i) + sum(j) &gt; threshold || flag[i][j]){
+        return 0;
+    }
+    flag[i][j] = true;
+    return helper(threshold, rows, cols, i+1, j, flag)+
+            helper(threshold, rows, cols, i-1, j, flag)+
+            helper(threshold, rows, cols, i, j+1, flag)+
+            helper(threshold, rows, cols, i, j-1, flag)+1;
+
+}
+
+private int sum(int num) {
+    if(num == 0)
+    return 0;
+    else {
+        return num/10 + num%10;
+    }
+}
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">## 14.剪绳子</span><br><span class="line">**题目**</span><br><span class="line">将一根长度为n的绳子，剪成m段，使得每段绳子的乘积最大是多少</span><br><span class="line"></span><br><span class="line">**思路1**</span><br><span class="line">**贪心算法**</span><br><span class="line">尽可能多剪长度为 3 的绳子，并且不允许有长度为 1 的绳子出现。如果出现了，就从已经切好长度为 3 的绳子中拿出一段与长度为 1 的绳子重新组合，把它们切成两段长度为 2 的绳子。</span><br></pre></td></tr></table></figure></p>
+<pre><code>public int breakGreedy(int n) {
+    if(n &lt; 2) return 0;
+    if(n == 2) return 1;
+    if(n == 3) return 2;
+    int timeOf3 = n/3;
+    if(n%3 == 1) {
+        timeOf3--;
+    }
+    int timeOf2 = (n - 3*timeOf3)/2;
+    return (int) (Math.pow(3, timeOf3)*Math.pow(2, timeOf2));
+}
+</code></pre><p><code>`</code></p>
+<p><strong>思路2</strong><br><strong>动态规划</strong><br>    //1.dp<br>    public int breakdp(int n) {<br>        if(n &lt; 2) return 0;<br>        if(n == 2) return 1;<br>        if(n == 3) return 2;<br>        int[] dp = new int[n+1];<br>        dp[0] = 0;<br>        dp[1] = 1;<br>        dp[2] = 2;<br>        dp[3] = 3;<br>        for(int i = 4; i &lt;= n; i++) {<br>            int max = 0;<br>            for(int j = 1; j &lt; i/2; j++) {<br>                int val = dp[i]*dp[j-1];<br>                max = max &gt; val ? max : val;<br>                dp[i] = max;<br>            }<br>        }<br>        return dp[n];<br>    }</p>
 
     </article>
     <!-- license  -->
@@ -503,7 +542,7 @@ private boolean helper(char[] matrix, int rows, int cols, int i, int j, char[] s
             <p>原文作者：<a href="http://yoursite.com">Jeremy Yang</a>
             <p>原文链接：<a href="http://yoursite.com/2018/10/15/jianzhi-offer/">http://yoursite.com/2018/10/15/jianzhi-offer/</a>
             <p>发表日期：<a href="http://yoursite.com/2018/10/15/jianzhi-offer/">October 15th 2018, 2:36:19 pm</a>
-            <p>更新日期：<a href="http://yoursite.com/2018/10/15/jianzhi-offer/">November 8th 2018, 3:03:25 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2018/10/15/jianzhi-offer/">November 11th 2018, 12:20:44 am</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -814,11 +853,11 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="JAVA"><span class="iconfont-archer">&#xe606;</span>JAVA</span>
+        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
     
         <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
-        <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
+        <span class="sidebar-tag-name" data-tags="JAVA"><span class="iconfont-archer">&#xe606;</span>JAVA</span>
     
         <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
     
