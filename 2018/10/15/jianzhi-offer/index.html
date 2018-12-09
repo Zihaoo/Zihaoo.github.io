@@ -283,7 +283,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">4.8k</span>阅读时长: <span class="post-count reading-time">23 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">5k</span>阅读时长: <span class="post-count reading-time">23 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -587,6 +587,11 @@ public int breakdp(int n) {
 <p>设链表的长度为 N。设两个指针 P1 和 P2，先让 P1 移动 K 个节点，则还有 N - K 个节点可以移动。此时让 P1 和 P2 同时移动，可以知道当 P1 移动到链表结尾时，P2 移动到 N - K 个节点处，该位置就是倒数第 K 个节点。<br>![c88caa0dad56d79d56c0b0e6af57d7f7.png]</p>
 <p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">FindKthToTail</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ListNode P1 = head;</span><br><span class="line">    <span class="keyword">while</span> (P1 != <span class="keyword">null</span> &amp;&amp; k-- &gt; <span class="number">0</span>)</span><br><span class="line">        P1 = P1.next;</span><br><span class="line">    <span class="keyword">if</span> (k &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    ListNode P2 = head;</span><br><span class="line">    <span class="keyword">while</span> (P1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        P1 = P1.next;</span><br><span class="line">        P2 = P2.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> P2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
+<h2 id="23-链表中环的入口结点"><a href="#23-链表中环的入口结点" class="headerlink" title="23. 链表中环的入口结点"></a>23. 链表中环的入口结点</h2><p><strong>题目</strong></p>
+<p>个链表中包含环，请找出该链表的环的入口结点。要求不能使用额外的空间。</p>
+<p><strong>思路</strong></p>
+<p>使用双指针，一个指针 fast 每次移动两个节点，一个指针 slow 每次移动一个节点。因为存在环，所以两个指针必定相遇在环中的某个节点上。假设相遇点在下图的 y6 位置，此时 fast 移动的节点数为 x+2y+z，slow 为 x+y，由于 fast 速度比 slow 快一倍，因此 x+2y+z=2(x+y)，得到 x=z。在相遇点，slow 要到环的入口点还需要移动 z 个节点，如果让 fast 重新从头开始移动，并且速度变为每次移动一个节点，那么它到环入口点还需要移动 x 个节点。在上面已经推导出 x=z，因此 fast 和 slow 将在环入口点相遇。<br><img src="en-resource://database/3213:0" alt="77a0f0013ca7ffce63e0c22157fde046.png"></p>
+<p><strong>Code</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
 
     </article>
     <!-- license  -->
@@ -595,7 +600,7 @@ public int breakdp(int n) {
             <p>原文作者：<a href="http://yoursite.com">Jeremy Yang</a>
             <p>原文链接：<a href="http://yoursite.com/2018/10/15/jianzhi-offer/">http://yoursite.com/2018/10/15/jianzhi-offer/</a>
             <p>发表日期：<a href="http://yoursite.com/2018/10/15/jianzhi-offer/">October 15th 2018, 2:36:19 pm</a>
-            <p>更新日期：<a href="http://yoursite.com/2018/10/15/jianzhi-offer/">December 9th 2018, 12:40:25 am</a>
+            <p>更新日期：<a href="http://yoursite.com/2018/10/15/jianzhi-offer/">December 9th 2018, 11:54:14 pm</a>
             <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -748,7 +753,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#01-找两个数的最大公约数"><span class="toc-number">1.</span> <span class="toc-text">01.找两个数的最大公约数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-单例模式"><span class="toc-number">2.</span> <span class="toc-text">02.单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-懒汉式-安全版"><span class="toc-number">2.0.1.</span> <span class="toc-text">一.懒汉式(安全版)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-饿汉式"><span class="toc-number">2.0.2.</span> <span class="toc-text">二.饿汉式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-双重校验锁"><span class="toc-number">2.0.3.</span> <span class="toc-text">三.双重校验锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四-静态内部类-在内部类创建对象"><span class="toc-number">2.0.4.</span> <span class="toc-text">四.静态内部类(在内部类创建对象)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五-枚举-防止反序列化创建对象"><span class="toc-number">2.0.5.</span> <span class="toc-text">五.枚举(防止反序列化创建对象)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#什么场景下用什么"><span class="toc-number">2.0.5.0.1.</span> <span class="toc-text">什么场景下用什么</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03-数组中的重复数字"><span class="toc-number">3.</span> <span class="toc-text">03.数组中的重复数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04-二维数组中的查找"><span class="toc-number">4.</span> <span class="toc-text">04.二维数组中的查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#05-代替空格"><span class="toc-number">5.</span> <span class="toc-text">05.代替空格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#06-从尾到前打印链表"><span class="toc-number">6.</span> <span class="toc-text">06.从尾到前打印链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#07-重建二叉树"><span class="toc-number">7.</span> <span class="toc-text">07.重建二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-正则表达式匹配"><span class="toc-number">8.</span> <span class="toc-text">19. 正则表达式匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-表示数值的字符串"><span class="toc-number">9.</span> <span class="toc-text">20. 表示数值的字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-调整数组顺序使奇数位于偶数前面"><span class="toc-number">10.</span> <span class="toc-text">21. 调整数组顺序使奇数位于偶数前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-链表中倒数第-K-个结点"><span class="toc-number">11.</span> <span class="toc-text">22. 链表中倒数第 K 个结点</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#01-找两个数的最大公约数"><span class="toc-number">1.</span> <span class="toc-text">01.找两个数的最大公约数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-单例模式"><span class="toc-number">2.</span> <span class="toc-text">02.单例模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-懒汉式-安全版"><span class="toc-number">2.0.1.</span> <span class="toc-text">一.懒汉式(安全版)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-饿汉式"><span class="toc-number">2.0.2.</span> <span class="toc-text">二.饿汉式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-双重校验锁"><span class="toc-number">2.0.3.</span> <span class="toc-text">三.双重校验锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四-静态内部类-在内部类创建对象"><span class="toc-number">2.0.4.</span> <span class="toc-text">四.静态内部类(在内部类创建对象)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五-枚举-防止反序列化创建对象"><span class="toc-number">2.0.5.</span> <span class="toc-text">五.枚举(防止反序列化创建对象)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#什么场景下用什么"><span class="toc-number">2.0.5.0.1.</span> <span class="toc-text">什么场景下用什么</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03-数组中的重复数字"><span class="toc-number">3.</span> <span class="toc-text">03.数组中的重复数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04-二维数组中的查找"><span class="toc-number">4.</span> <span class="toc-text">04.二维数组中的查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#05-代替空格"><span class="toc-number">5.</span> <span class="toc-text">05.代替空格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#06-从尾到前打印链表"><span class="toc-number">6.</span> <span class="toc-text">06.从尾到前打印链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#07-重建二叉树"><span class="toc-number">7.</span> <span class="toc-text">07.重建二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-正则表达式匹配"><span class="toc-number">8.</span> <span class="toc-text">19. 正则表达式匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-表示数值的字符串"><span class="toc-number">9.</span> <span class="toc-text">20. 表示数值的字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-调整数组顺序使奇数位于偶数前面"><span class="toc-number">10.</span> <span class="toc-text">21. 调整数组顺序使奇数位于偶数前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-链表中倒数第-K-个结点"><span class="toc-number">11.</span> <span class="toc-text">22. 链表中倒数第 K 个结点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-链表中环的入口结点"><span class="toc-number">12.</span> <span class="toc-text">23. 链表中环的入口结点</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -761,16 +766,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -936,15 +931,15 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="JAVA"><span class="iconfont-archer">&#xe606;</span>JAVA</span>
-    
         <span class="sidebar-tag-name" data-tags="算法"><span class="iconfont-archer">&#xe606;</span>算法</span>
     
         <span class="sidebar-tag-name" data-tags="数据库"><span class="iconfont-archer">&#xe606;</span>数据库</span>
     
-        <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
+        <span class="sidebar-tag-name" data-tags="JAVA"><span class="iconfont-archer">&#xe606;</span>JAVA</span>
     
         <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="操作系统"><span class="iconfont-archer">&#xe606;</span>操作系统</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
